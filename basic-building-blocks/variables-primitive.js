@@ -1,4 +1,5 @@
 // variables and data types
+// syntax:
 // <data-type> <variable-name> = <value>
 
 // var name = "softy";
