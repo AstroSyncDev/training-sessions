@@ -103,3 +103,77 @@
 //     }
 // }
 
+// Print multiples of 5 up to 50
+// for (let n = 1; n < 11; n++) {
+//     console.log(n * 5)
+// }
+
+// Print the reverse of a string
+
+// const str = 'Hello World'
+
+// for (let i = str.length - 1; i >= 0; i--) {
+//     const char = str[i]
+//     console.log(char)
+// }
+
+// find the largest number in an array
+// var arr = [5, 2, 6, 9, -11, 2]
+// var large = 0
+
+// arr.push(30)
+
+// for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] > large) {
+//         large = arr[i]
+//     }
+// }
+
+// arr.push(50)
+
+// console.log("large", large)
+
+// find the factorial of a number
+// var fact = 1;
+// const n = 7700000000000000000000000000;
+
+// for (let i = 0; i < n; i++) {
+//     fact = (n - i) * fact;
+// }
+
+// console.log(fact)
+
+// var fact = 1;
+// const n = 7;
+
+// for (let i = n; i > 0; i--) {
+//     fact = fact * i
+// }
+
+// console.log(fact)
+
+// continue statement
+// const arr = ['Car', 'Pen', 'Book', 'Laptop', 'Bag']
+
+// for (let i = 0; i < arr.length; i++) {
+//     const el = arr[i];
+
+//     if (el === 'Book') {
+//         continue;
+//     }
+
+//     console.log(el)
+// }
+
+// break statement
+// const arr = ['Car', 'Pen', 'Book', 'Laptop', 'Bag']
+
+// for (let i = 0; i < arr.length; i++) {
+//     const el = arr[i];
+
+//     if (el === 'Book') {
+//         break;
+//     }
+
+//     console.log(el)
+// }
