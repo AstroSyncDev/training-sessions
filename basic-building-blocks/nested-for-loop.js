@@ -72,18 +72,18 @@
 // Outfit: Blue Shirt + Shorts
 // Outfit: Blue Shirt + Joggers
 
-var count = 0
+// var count = 0
 
-for (let minute = 0; minute <= 60; minute++) {
-    for (let second = 0; second < 60; second++) {
-        // console.log('minute', minute, 'second', second)
-        for (let milisecond = 0; milisecond < 1000; milisecond++) {
-            // console.log('minute', minute, 'second', second, 'milisecond', milisecond)
-            count++;
-        }
-    }
-}
-console.log('finished execution in', count, 'iterations')
+// for (let minute = 0; minute <= 60; minute++) {
+//     for (let second = 0; second < 60; second++) {
+//         // console.log('minute', minute, 'second', second)
+//         for (let milisecond = 0; milisecond < 1000; milisecond++) {
+//             // console.log('minute', minute, 'second', second, 'milisecond', milisecond)
+//             count++;
+//         }
+//     }
+// }
+// console.log('finished execution in', count, 'iterations')
 
 // total number of iterations:
 // 1000 * 60 * 60 = 3,600,000 (wrong)
@@ -118,3 +118,14 @@ console.log('finished execution in', count, 'iterations')
 
 // cd basic-building-blocks
 // node nested-for-loop.js
+
+
+for (i = 1; i < 11; i++) {
+    console.log('value of i', i)
+    for (j = 10; j < 51; j = j + 10) {
+        if ((i === 5 || i === 7) && j === 40) {
+            break;
+        }
+        console.log('value of j', j)
+    }
+}
