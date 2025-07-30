@@ -1,0 +1,47 @@
+<html>
+
+<body>
+
+    <p id="text">This is a paragraph. </p>
+    <button type="button" class="color-red big-width" onclick="addText()">Change text!</button>
+
+</body>
+
+</html>
+
+<style>
+    p {
+        color: red;
+        font-size: 50px;
+    }
+
+    button {
+        background-color: yellow;
+    }
+
+    .color-red {
+        background-color: burlywood;
+    }
+
+    .big-width {
+        width: 200px;
+    }
+</style>
+
+<script>
+    var textArr = ['This is a paragraph.']
+    function changeText() {
+        textArr.push('This is new text')
+        const textElement = document.getElementById('text');
+        textElement.innerHTML = textArr.join('<br>');
+        textElement.style.color = 'purple'
+    }
+    function addText() {
+        const para = document.createElement("button");
+        para.innerText = "This is a new paragraph";
+
+
+        const textElement = document.getElementById('text');
+        textElement.append(para)
+    }
+</script>
