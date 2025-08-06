@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sandwich Generator</title>
+    <style>
+        .sandwich {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 400px;
+        }
+
+        .remove-btn {
+            margin-top: 5px;
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button type="button" id="sandwichButton">Generate Sandwich</button>
+
+    <script>
+        let breads = ['Brown Bread', 'Milk Bread', 'White Bread', 'Sugar-free Bread'];
+        let mains = ['Chicken', 'Beef', 'Mutton'];
+        let sauces = ['Hot Sauce', 'Siracha', 'Chili Garlic Sauce', 'Mayo', 'Ketchup', 'Mustard', 'Ranch'];
+
+        const button = document.getElementById('sandwichButton');
+        let sandwichCount = 1;
+
+        button.addEventListener('click', () => {
+            const sandwich = getSandwich();
+
+            const sandwichDiv = document.createElement('div');
+            sandwichDiv.classList.add('sandwich');
+
+            const paragraph = document.createElement('p');
+            paragraph.textContent =
+                `Sandwich ${sandwich.number} ${sandwich.spicy}:\n` +
+                `- Bread: ${sandwich.bread}\n` +
+                `- Main: ${sandwich.main}\n` +
+                `- Sauces: ${sandwich.sauce}\n` +
+                `- Vegetables: ${sandwich.vegetables}`;
+            paragraph.style.whiteSpace = 'pre-line'
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove Sandwich';
+            removeBtn.classList.add('remove-btn');
+
+            removeBtn.addEventListener('click', () => {
+                sandwichDiv.remove();
+            });
+
+            sandwichDiv.appendChild(paragraph);
+            sandwichDiv.appendChild(removeBtn);
+            button.insertAdjacentElement('afterend', sandwichDiv);
+
+            sandwichCount++;
+        });
+
+        function getSandwich() {
+            let BreadRandom = Math.floor(Math.random() * breads.length);
+            let MainRandom = Math.floor(Math.random() * mains.length);
+
+            let bread = breads[BreadRandom];
+            let main = mains[MainRandom];
+
+            let Sauce1, Sauce2;
+            Sauce1 = Math.floor(Math.random() * sauces.length);
+            do {
+                // Sauce1 = Math.floor(Math.random() * sauces.length);
+                Sauce2 = Math.floor(Math.random() * sauces.length);
+            } while (Sauce1 === Sauce2);
+
+            let sauce = `${sauces[Sauce1]}, ${sauces[Sauce2]}`;
+            let spicy = (Sauce1 < 3 || Sauce2 < 3) ? 'spicy' : '';
+
+            let vegetables;
+            switch (MainRandom) {
+                case 0:
+                    vegetables = 'Cucumbers, Onions';
+                    break;
+                case 1:
+                    vegetables = 'Lettuce, Tomatoes';
+                    break;
+                case 2:
+                    vegetables = 'Basil, Olives, Grated Carrot';
+                    break;
+            }
+
+            return {
+                number: sandwichCount,
+                bread,
+                main,
+                sauce,
+                spicy,
+                vegetables
+            };
+        }
+    </script>
+</body>
+
+</html>

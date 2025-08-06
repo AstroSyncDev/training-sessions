@@ -1,0 +1,202 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>🥪 Sandwich Creator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: url(https://static.vecteezy.com/system/resources/previews/066/300/848/non_2x/tasty-sandwiches-with-meat-on-plates-ingredients-arranged-on-background-for-menu-free-photo.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI';
+            font-size: large;
+            text-align: center;
+            color: #020202;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #074107;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        button#createBtn {
+            padding: 12px 24px;
+            background: linear-gradient(270deg, #6dd5ed, #2193b0);
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: #333;
+        }
+
+        button#createBtn:hover {
+            background: linear-gradient(115deg, #2193b0, #6dd5ed);
+            transform: scale(1.03);
+        }
+
+        #sandwichList {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .sandwich {
+            background: radial-gradient(#ffffff, #eee, #8b8b8b);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .sandwich:hover {
+            transform: scale(1.02);
+        }
+
+        .sandwich h3 {
+            margin-top: 0;
+            color: #144069;
+        }
+
+        .sandwich ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sandwich li {
+            padding: 5px;
+            border-bottom: 1px solid #000000;
+        }
+
+        .sandwich li:last-child {
+            border-bottom: none;
+            color: red
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🥪 Random Sandwich Creator</h1>
+    <div class="center">
+        <button id="createBtn">Create Sandwich</button>
+    </div>
+
+    <div id="sandwichList"></div>
+
+    <script>
+        function getBread() {
+            const breads = ["Brown Bread", "Milk Bread", "White Bread", "Sugar-free Bread"];
+            return breads[Math.floor(Math.random() * breads.length)];
+        }
+
+        function getMain() {
+            const mains = ["Chicken", "Beef", "Mutton"];
+            return mains[Math.floor(Math.random() * mains.length)];
+        }
+
+        function getSauce() {
+            const sauces = ["Mayo", "Ketchup", "Mustard", "Hot Sauce", "Ranch", "Sriracha", "Chili Garlic Sauce"];
+            const selected = [];
+            while (selected.length < 2) {
+                const randomSauce = sauces[Math.floor(Math.random() * sauces.length)];
+                if (!selected.includes(randomSauce)) {
+                    selected.push(randomSauce);
+                }
+            }
+            return selected;
+        }
+
+        function getVegetables(main) {
+            let vegList = [];
+            if (main === "Beef") vegList = ["Lettuce", "Tomatoes"];
+            if (main === "Chicken") vegList = ["Cucumbers", "Onions"];
+            if (main === "Mutton") vegList = ["Basil", "Olives", "Grated Carrot"];
+
+            const selected = [];
+            const count = Math.floor(Math.random() * vegList.length) + 1;
+            while (selected.length < count) {
+                const randomVeg = vegList[Math.floor(Math.random() * vegList.length)];
+                if (!selected.includes(randomVeg)) {
+                    selected.push(randomVeg);
+                }
+            }
+
+            return selected;
+        }
+
+        const spicyList = ["Hot Sauce", "Sriracha", "Chili Garlic Sauce"];
+
+        function createSandwich() {
+            const bread = getBread();
+            const main = getMain();
+            const sauces = getSauce();
+            const vegetables = getVegetables(main);
+            const isSpicy = sauces.some(sauce => spicyList.includes(sauce));
+
+            const sandwichDiv = document.createElement("div");
+            sandwichDiv.className = "sandwich";
+
+            const removeBtn = document.createElement("button");
+            removeBtn.className = "remove-btn";
+            removeBtn.textContent = "Remove";
+            removeBtn.onclick = () => sandwichDiv.remove();
+
+            const title = document.createElement("h3");
+            title.textContent = "🥪 Your Sandwich";
+
+            const list = document.createElement("ul");
+            const items = [
+                `Bread: ${bread}`,
+                `Main: ${main}`,
+                `Sauces: ${sauces.join(", ")}`,
+                `Vegetables: ${vegetables.join(", ")}`,
+                `Spicy: ${isSpicy ? "Yes 🌶️" : "No"}`
+            ];
+
+            items.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+
+            sandwichDiv.appendChild(removeBtn);
+            sandwichDiv.appendChild(title);
+            sandwichDiv.appendChild(list);
+            document.getElementById("sandwichList").appendChild(sandwichDiv);
+        }
+
+        document.getElementById("createBtn").addEventListener("click", createSandwich);
+    </script>
+
+</body>
+
+</html>

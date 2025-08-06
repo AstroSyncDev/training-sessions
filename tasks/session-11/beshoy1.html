@@ -1,0 +1,57 @@
+
+    <html>
+<body>
+
+    <p id="text">sandwiches. </p>
+    <button type="button" onclick="createSandwich()">Create Sandwich</button>
+
+
+</body>
+<script>
+
+function getRandom(arr){
+    return arr[Math.floor(Math.random()*arr.length)]
+}
+function getBread(){
+    var Bread=['brownbread','milkbread','white bread','sugar-free bread']
+return getRandom(Bread)
+}
+function getMain(){
+ // main
+    var main=['beef','chicken','mutton']
+return getRandom(main)
+}
+function getSauce1(){
+    var suace1=['mayo','ketchup','mustard']   
+
+return getRandom(suace1)
+} function sandwiches() {
+    console.log (getBread(),'',getMain(),'',getSauce1())
+}
+function createSandwich() {
+        const bread = getBread();
+        const main = getMain();
+        const sauce = getSauce1();
+
+        const para = document.createElement("p");
+        para.innerText = `Sandwich is: ${bread}, ${main}, ${sauce}`;
+        document.body.appendChild(para); 
+        console.log('Sandwich:', bread, main, sauce);
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </html>

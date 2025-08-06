@@ -1,0 +1,56 @@
+
+    <html>
+<body>
+
+    <p id="text">sandwiches. </p>
+    <button type="button" onclick="createSandwich()">Create Sandwich</button>
+<div id="sandwich-list"></div>
+</body>
+<script>
+
+function getRandom(arr){
+    return arr[Math.floor(Math.random()*arr.length)]
+}
+function getBread(){
+    var Bread=['brownbread','milkbread','white bread','sugar-free bread']
+return getRandom(Bread)
+}
+function getMain(){
+ // main
+    var main=['beef','chicken','mutton']
+return getRandom(main)
+}
+function getSauce1(){
+    var suace1=['mayo','ketchup','mustard']   
+
+return getRandom(suace1)
+} function sandwiches() {
+    console.log (getBread(),'',getMain(),'',getSauce1())
+}
+function removeSandwich(button){
+    const element = document.getElementById("text");
+element.remove(createSandwich());
+}
+function createSandwich() {
+        const bread = getBread();
+        const main = getMain();
+        const sauce = getSauce1();
+ const sandwichDiv = document.createElement("div");
+        const para = document.createElement("p");
+        para.innerText = `Sandwich is: ${bread}, ${main}, ${sauce}`;
+        document.body.appendChild(para); 
+        console.log('Sandwich:', bread, main, sauce);
+        const removeBtn = document.createElement("button");
+            removeBtn.innerText = "Remove";
+            removeBtn.onclick = function () {
+                sandwichDiv.remove(); 
+       
+       }
+       sandwichDiv.appendChild(para);
+        sandwichDiv.appendChild(removeBtn);
+       document.getElementById("sandwich-list").appendChild(sandwichDiv);
+
+        
+    }
+
+</script>
